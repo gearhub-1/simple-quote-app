@@ -14,7 +14,12 @@ podTemplate(
     }
     stage('Docker build') {
       container("docker"){
-        sh "docker build -t $services:$tag -f ./$services/app.dockerfile ./$services"
+        sh "docker build -t localhost:5000/$services:$tag -f ./$services/app.dockerfile ./$services"
+      }
+    }
+    stage('Docker Push') {
+      container("docker"){
+        sh "docker push localhost:5000/$services:$tag"
       }
     }
   }
