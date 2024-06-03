@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: localhost:5000/frontend:v2  # Replace with your image name/tag
+          image: localhost:5000/frontend:v3  # Replace with your image name/tag
           ports:
             - containerPort: 80
 
