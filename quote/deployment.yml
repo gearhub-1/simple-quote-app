@@ -1,0 +1,34 @@
+# quotes-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes-deployment
+spec:
+  replicas: 1  # Adjust as needed for scalability
+  selector:
+    matchLabels:
+      app: quotes
+  template:
+    metadata:
+      labels:
+        app: quotes
+    spec:
+      containers:
+        - name: quotes
+          image: quotes-service:latest  # Replace with your image name/tag
+          ports:
+            - containerPort: 5000
+
+---
+# quotes-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: quotes-service
+spec:
+  selector:
+    app: quotes
+  ports:
+    - protocol: TCP
+      port: 5000  # Service port
+      targetPort: 5000  # Container port
