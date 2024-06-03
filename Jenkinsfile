@@ -10,9 +10,7 @@ podTemplate(
 {
   node(POD_LABEL) {
     stage('Checkout Code') {
-      container("docker"){
-        sh "docker run hello-world"
-      }
+      git branch: 'main', url: 'https://github.com/gearhub-1/simple-quote-app'
     }
     stage('Docker build') {
       container("docker"){
