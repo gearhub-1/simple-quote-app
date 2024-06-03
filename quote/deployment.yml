@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: quotes-deployment
+  namespace: simple-quote-app
 spec:
   replicas: 1  # Adjust as needed for scalability
   selector:
@@ -15,7 +16,7 @@ spec:
     spec:
       containers:
         - name: quotes
-          image: quotes-service:latest  # Replace with your image name/tag
+          image: localhost:5000/quote:latest  # Replace with your image name/tag
           ports:
             - containerPort: 5000
 
@@ -25,6 +26,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: quotes-service
+  namespace: simple-quote-app
 spec:
   selector:
     app: quotes
